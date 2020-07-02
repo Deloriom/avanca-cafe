@@ -53,6 +53,9 @@
 ###### Abra o powershell em modo administrador e execute:
 ```php.ini```
 Após abrir o arquivo procure por 'extension=pdo_mysql' (sem as aspas), provavelmente ele estará assim: ';extension=pdo_mysql', neste caso é só retirar o ponto e virgula ';' antes e salvar.
+Caso o problema continue, abra novamente o powershell em modo administrador e execute:
+```php -i | find /i "Configuration File```
+Ele retornará um caminho, que você terá de copiar e colar no explorador de arquivos e realizar a mesma alteração feita anteriormente.
 
 ### Mais informações:
 >  CHOCOLATEY
@@ -67,8 +70,8 @@ Após abrir o arquivo procure por 'extension=pdo_mysql' (sem as aspas), provavel
 >  LARAVEL (O lumen utiliza)
     https://laravel.com/
   
-  >  ARTISAN
-  https://laravel.com/docs/7.x/migrations
+>  ARTISAN
+    https://laravel.com/docs/7.x/migrations
   
 
   
