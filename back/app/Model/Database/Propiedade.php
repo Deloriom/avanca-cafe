@@ -5,10 +5,9 @@ namespace App\Model\Database;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class propriedade extends Model
+class Propriedade extends Model
 {
         // use SoftDeletes;
-
         protected $dates = [
             'created_at', 'updated_at', 'deleted_at'
         ];
@@ -16,10 +15,9 @@ class propriedade extends Model
         protected $fillable = [
             'id',
             'nome',
-            'login',
-            'senha'
+            'proprietario_id',
         ];
-        protected $table = 'proprietario';
+        protected $table = 'propriedade';
 
         public static function scopeGet($query ,$col, $param, $id=0)
         {
