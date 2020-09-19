@@ -14,3 +14,20 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(['prefix' => 'adminstrativo'], function () use ($router) {
+    $router->options('/cadastroPropietario', ['middleware' => ['CorsDomain', 'AuthToken' , 'Timezone']]);
+    $router->post(
+        '/cadastroPropietario',
+        ['uses' => 'Propietario\PropietarioController@cadastraPropietario']
+    );
+
+    $router->options('/login', ['middleware' => ['CorsDomain', 'AuthToken' , 'Timezone']]);
+    $router->post(
+        '/cadastroPropietario',
+        ['uses' => 'Propietario\PropietarioController@login']
+    );
+});
+
+
+
