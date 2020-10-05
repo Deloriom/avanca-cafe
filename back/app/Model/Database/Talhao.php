@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Talhao extends Model
 {
-        // use SoftDeletes;
+        use SoftDeletes;
 
         protected $dates = [
             'created_at', 'updated_at', 'deleted_at'

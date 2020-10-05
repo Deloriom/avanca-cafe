@@ -27,11 +27,6 @@ class Propietario extends Model
             return $query->where($col,$param)->orWhere('id', $id);
         }
 
-        public function savePropietario($dados) {
-            $this->fill($dados);
-            return $this->save();
-        }
-
         public function getUsuarioLoginSenha($login, $senha) {
             $query = DB::table('proprietario as pr');
             $query->select('*');
