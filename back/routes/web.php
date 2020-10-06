@@ -16,9 +16,7 @@ $router->get('/', function () use ($router) {
 });
 
 $router->group(['prefix' => 'api', 'Middleware' => ['CorsDomain']], function () use ($router) {
-    $router->post('/cadastroPropietario', 'Propietario\PropietarioController@cadastraPropietario');
-    $router->post('/cadastraAnalise', 'Analise\AnaliseController@cadastraAnalise');
-    $router->post('/login', 'Propietario\PropietarioController@login');
+    $router->post('/analise', 'AnaliseController@analise');
 });
 
 

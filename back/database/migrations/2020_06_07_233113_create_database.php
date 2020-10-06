@@ -17,8 +17,7 @@ class CreateDatabase extends Migration
         Schema::create('proprietario', function (Blueprint $table) {
             $table->id();
             $table->string('nome', 100);
-            $table->string('login', 80);
-            $table->string('senha', 42);
+            $table->string('codigo', 32);
             $table->timestamps();
         });
 
@@ -32,7 +31,6 @@ class CreateDatabase extends Migration
 
         Schema::create('talhao', function (Blueprint $table) {
             $table->id();
-            $table->string('nome', 50);
             $table->string('cultivar', 50);
             $table->date('data_plantio');
             $table->decimal('area_ha', 10,2);
@@ -111,10 +109,10 @@ class CreateDatabase extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('proprietario');
-        Schema::dropIfExists('propriedade');
-        Schema::dropIfExists('talhao');
-        Schema::dropIfExists('analise_solo');
         Schema::dropIfExists('recomendacao');
+        Schema::dropIfExists('analise_solo');
+        Schema::dropIfExists('talhao');
+        Schema::dropIfExists('propriedade');
+        Schema::dropIfExists('proprietario');
     }
 }
