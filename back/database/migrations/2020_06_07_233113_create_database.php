@@ -38,11 +38,11 @@ class CreateDatabase extends Migration
             $table->decimal('area_ha', 10,2);
             $table->decimal('espacamento_ruas', 10,2);
             $table->decimal('espacamento_plantas', 10,2);
-            $table->decimal('previsao_colheitas_saca', 10,2)->default(null);
-            $table->decimal('saturacao_por_bases', 10,2)->default(null);
+            $table->decimal('previsao_colheitas_saca', 10,2)->nullable();
+            $table->decimal('saturacao_por_bases', 10,2)->nullable();
             $table->decimal('prnt', 10,2); // O poder relativo de neutralização total do calcario (PRNT) geralmente 76 na região
-            $table->decimal('profundidade_corrigida', 10,2)->default(null);
-            $table->decimal('superficie_cobertura', 10,2)->default(null);
+            $table->decimal('profundidade_corrigida', 10,2)->nullable();
+            $table->decimal('superficie_cobertura', 10,2)->nullable();
 
             $table->unsignedBigInteger('propriedade_id');
             $table->foreign('propriedade_id')->references('id')->on('propriedade');
@@ -57,25 +57,25 @@ class CreateDatabase extends Migration
             $table->decimal('ca', 10, 2); // calcio
             $table->decimal('mg', 10, 2); // magnesio
             $table->decimal('k', 10, 2); // potassio
-            $table->decimal('so', 10, 2)->default(null); // 
-            $table->decimal('b', 10, 2)->default(null); // boro
-            $table->decimal('zn', 10, 2)->default(null); // zinco
-            $table->decimal('cu', 10, 2)->default(null); // cobre
-            $table->decimal('mn', 10, 2)->default(null); // manganes
-            $table->decimal('fe', 10, 2)->default(null); // ferro
-            $table->decimal('ai', 10, 2)->default(null); // aluminio
-            $table->decimal('t_mi', 10, 2)->default(null); // 
-            $table->decimal('h_ai', 10, 2)->default(null); //
-            $table->decimal('m', 10, 2)->default(null); //
-            $table->decimal('sb', 10, 2)->default(null); // soma de bases
-            $table->decimal('t_ma', 10, 2)->default(null);
-            $table->decimal('v', 10, 2)->default(null); // saturação de bases
-            $table->decimal('ca_ctc', 10, 2)->default(null); // percentual de calcio
-            $table->decimal('mg_ctc', 10, 2)->default(null); // percentual de magnesio
-            $table->decimal('k_ctc', 10, 2)->default(null);  // percentual de potassio
-            $table->decimal('ca_mg', 10, 2)->default(null); // relação calcio magnesio
-            $table->decimal('materia_organica', 10, 2)->default(null);
-            $table->decimal('teor_argila', 10, 2)->default(null);
+            $table->decimal('so', 10, 2)->nullable(); // 
+            $table->decimal('b', 10, 2)->nullable(); // boro
+            $table->decimal('zn', 10, 2)->nullable(); // zinco
+            $table->decimal('cu', 10, 2)->nullable(); // cobre
+            $table->decimal('mn', 10, 2)->nullable(); // manganes
+            $table->decimal('fe', 10, 2)->nullable(); // ferro
+            $table->decimal('ai', 10, 2)->nullable(); // aluminio
+            $table->decimal('t_mi', 10, 2)->nullable(); // 
+            $table->decimal('h_ai', 10, 2)->nullable(); //
+            $table->decimal('m', 10, 2)->nullable(); //
+            $table->decimal('sb', 10, 2)->nullable(); // soma de bases
+            $table->decimal('t_ma', 10, 2)->nullable();
+            $table->decimal('v', 10, 2)->nullable(); // saturação de bases
+            $table->decimal('ca_ctc', 10, 2)->nullable(); // percentual de calcio
+            $table->decimal('mg_ctc', 10, 2)->nullable(); // percentual de magnesio
+            $table->decimal('k_ctc', 10, 2)->nullable();  // percentual de potassio
+            $table->decimal('ca_mg', 10, 2)->nullable(); // relação calcio magnesio
+            $table->decimal('materia_organica', 10, 2)->nullable();
+            $table->decimal('teor_argila', 10, 2)->nullable();
 
             $table->unsignedBigInteger('talhao_id');
             $table->foreign('talhao_id')->references('id')->on('talhao');
