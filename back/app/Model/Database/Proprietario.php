@@ -4,8 +4,9 @@ namespace App\Model\Database;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
-class Analise_solo extends Model
+class Proprietario extends Model
 {
         use SoftDeletes;
 
@@ -15,19 +16,19 @@ class Analise_solo extends Model
         
         protected $fillable = [
             'id',
-            'saturacao_solo',
-            'ctc',
-            'magnesio',
-            'calcio',
-            'aluminio',
-            'talhao_id'
+            'nome',
+            'codigo'
         ];
-            
-        protected $table = 'analise_solo';
+        protected $table = 'proprietario';
 
         public static function scopeGet($query ,$col, $param, $id=0)
         {
             return $query->where($col,$param)->orWhere('id', $id);
         }
-        
-    }
+
+        public static function scopegetProprietario($query ,$col, $param, $id=0)
+        {
+            return $query->where($col,$param)->orWhere('id', $id);
+        }
+}
+

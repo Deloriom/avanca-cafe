@@ -15,21 +15,10 @@ class Recomendacao extends Model
         
         protected $fillable = [
             'id',
-            'data_recomendacao',
-            'safra_ano',
-            'quantidade_calcario_ha',
-            'gramas_metro_linear',
-            'tipo_calcario',
-            'prnt',
-            'quantidade_calcario_talhao',
-            'nitrogenio',
-            'fosforo',
-            'potassio',
-            'fonte',
-            'kg_ha',
-            'sc_talhao',
-            'gramas_planta',
-            'gramas_metro',
+            'quantidade_calcario_ha_saturacao',
+            'quantidade_calcario_teor_aluminio',
+            'quantidade_calcario_ha_ca_mg',
+            'insuficienciaCa_Mg',
             'analise_solo_id'
         ];
             

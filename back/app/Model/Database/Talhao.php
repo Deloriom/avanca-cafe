@@ -15,19 +15,9 @@ class Talhao extends Model
         
         protected $fillable = [
             'id',
-            'nome',
-            'cultivar',
-            'data_plantio',
             'area_ha',
-            'espacamento_ruas',
-            'espacamento_plantas',
-            'prnt',
-            'propriedade_id',
-            //def null
-            'previsao_colheitas_saca',   
-            'saturacao_por_bases',
-            'profundidade_corrigida',
-            'superficie_cobertura'
+            'saturacao_ideal',
+            'proprietario_id'
         ];
             
         protected $table = 'talhao';
