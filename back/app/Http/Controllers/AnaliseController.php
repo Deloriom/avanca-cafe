@@ -79,20 +79,20 @@ class AnaliseController extends Controller
         // metodo por saturação de bases 1
         $resultadoSaturacaoBases = round(($talhao['saturacao_ideal'] - $analise['saturacao_solo']) * $analise['ctc']/76 ,2);
 
-        // metodo ca/mg
+        // metodo 3 ca/mg
         
         $fatorConversaoMagnesio = 0.404;
         $faixaIdealMagnesio = 0.17;
-        $resultadoMagnesio = (($analise['ctc'] * $faixaIdealMagnesio) - $analise['magnesio']) * $fatorConversaoMagnesio;
+        $resultadoMagnesio = round((($analise['ctc'] * $faixaIdealMagnesio) - $analise['magnesio']) * $fatorConversaoMagnesio,2);
         
         $fatorConversaoCalcio = 0.56;
         $faixaIdealCalcio = 0.5;
-        $resultadoCalcio = (($analise['ctc'] * $faixaIdealCalcio) - $analise['calcio']) * $fatorConversaoCalcio;
+        $resultadoCalcio = round((($analise['ctc'] * $faixaIdealCalcio) - $analise['calcio']) * $fatorConversaoCalcio,2);
 
-        $relacaoCalcioMagnesio = round($resultadoCalcio/$resultadoMagnesio, 2);
+        $relacaoCalcioMagnesio = $resultadoCalcio/$resultadoMagnesio;
         $calcarioEscolhido = null;
         $calcario = DB::table('calcario')->select('*')->get();
-        
+
         foreach ($calcario as $key => $value) {
             $relacaoCalcioMagnesioCalcario = round($value->ca/$value->mg,2);
             $value->relacao = $relacaoCalcioMagnesioCalcario;
@@ -104,22 +104,28 @@ class AnaliseController extends Controller
                 }
             }
         }
-        
-        dd($calcarioEscolhido);
-        
-        dd($relacaoCalcioMagnesio);
+        // verifica se o magnesio é abaixo de meio centimol
+        if($resultadoMagnesio < 0.5) {
+            $resultadoCaMg = round($resultadoMagnesio / ($calcarioEscolhido->mg/100),2);
+        } else {
+            $resultadoCaMg = round($resultadoCalcio / ($calcarioEscolhido->ca/100),2);
+        }
 
-        // dd($resultadoSaturacaoBases);
+        if ($resultadoCaMg < 0) {
+            $resultadoCaMg = $resultadoCaMg * -1;
+        }
+        // se continuar esse calculo você chega no blend ideal de calcario
 
         $recomendacao = Recomendacao::updateOrCreate(
             ['analise_solo_id' => $this->analise_solo->id],
             [
                 'quantidade_calcario_ha_saturacao' => $resultadoSaturacaoBases,
                 // 'quantidade_calcario_teor_aluminio' => '',
-                // 'quantidade_calcario_ha_ca_mg' => '',
-                // 'insuficienciaCa_Mg' => ''
+                'quantidade_calcario_ha_ca_mg' => $resultadoCaMg,
+                'calcario_id' => $calcarioEscolhido->id
             ]
         );
+        dd($recomendacao);
 
     }
 

@@ -18,7 +18,7 @@ class Recomendacao extends Model
             'quantidade_calcario_ha_saturacao',
             'quantidade_calcario_teor_aluminio',
             'quantidade_calcario_ha_ca_mg',
-            'insuficienciaCa_Mg',
+            'calcario_id',
             'analise_solo_id'
         ];
             

@@ -48,19 +48,7 @@ class CreateDatabase extends Migration
             $table->softDeletes();
             $table->timestamps();
         });
-
-        Schema::create('recomendacao', function (Blueprint $table) {
-            $table->id();
-            $table->decimal('quantidade_calcario_ha_saturacao', 10, 2)->nullable(); // quantidade_calcario por hectare no metodo saturaçao
-            $table->decimal('quantidade_calcario_teor_aluminio', 10, 2)->nullable(); // quantidade_calcario por hectare no metodo saturaçao
-            $table->decimal('quantidade_calcario_ha_ca_mg', 10, 2)->nullable(); // quantidade_calcario por hectare no metodo ca_mg
-            $table->string('insuficienciaCa_Mg', 50)->nullable(); // se está mais insuficiente calcio ou magnesio
-            $table->unsignedBigInteger('analise_solo_id');
-            $table->foreign('analise_solo_id')->references('id')->on('analise_solo');
-            $table->softDeletes();
-            $table->timestamps();
-        });
-
+        
         Schema::create('calcario', function (Blueprint $table) {
             $table->id();
             $table->string('nome', 50);
@@ -72,6 +60,20 @@ class CreateDatabase extends Migration
             $table->softDeletes();
             $table->timestamps();
         });
+
+        Schema::create('recomendacao', function (Blueprint $table) {
+            $table->id();
+            $table->decimal('quantidade_calcario_ha_saturacao', 10, 2)->nullable(); // quantidade_calcario por hectare no metodo saturaçao
+            $table->decimal('quantidade_calcario_teor_aluminio', 10, 2)->nullable(); // quantidade_calcario por hectare no metodo saturaçao
+            $table->decimal('quantidade_calcario_ha_ca_mg', 10, 2)->nullable(); // quantidade_calcario por hectare no metodo ca_mg
+            $table->unsignedBigInteger('calcario_id')->nullable(); // calcario escolhido para suprir a nescessidade ca/mg
+            $table->unsignedBigInteger('analise_solo_id');
+            $table->foreign('analise_solo_id')->references('id')->on('analise_solo');
+            $table->foreign('calcario_id')->references('id')->on('calcario');
+            $table->softDeletes();
+            $table->timestamps();
+        });
+
         
         DB::table('calcario')->insert(
             [ 
