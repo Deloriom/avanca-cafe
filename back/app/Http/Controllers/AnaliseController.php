@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Model\Database\Analise_solo;
-use App\Model\Database\Propriedade;
+use App\Model\Database\Calcario;
 use App\Model\Database\Proprietario;
 use App\Model\Database\Recomendacao;
 use App\Model\Database\Talhao;
@@ -12,6 +12,7 @@ use DateTime;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\DB;
 
 class AnaliseController extends Controller
 {
@@ -88,10 +89,25 @@ class AnaliseController extends Controller
         $faixaIdealCalcio = 0.5;
         $resultadoCalcio = (($analise['ctc'] * $faixaIdealCalcio) - $analise['calcio']) * $fatorConversaoCalcio;
 
-        $relacaoCalcioMagnesio = $resultadoCalcio/$resultadoMagnesio;
-
+        $relacaoCalcioMagnesio = round($resultadoCalcio/$resultadoMagnesio, 2);
+        $calcarioEscolhido = null;
+        $calcario = DB::table('calcario')->select('*')->get();
         
-        // dd($resultadoCalcio, $resultadoMagnesio);
+        foreach ($calcario as $key => $value) {
+            $relacaoCalcioMagnesioCalcario = round($value->ca/$value->mg,2);
+            $value->relacao = $relacaoCalcioMagnesioCalcario;
+            if (!isset($calcarioEscolhido)) {
+                $calcarioEscolhido = $value;
+            } else {
+                if (abs($relacaoCalcioMagnesio - $relacaoCalcioMagnesioCalcario) < abs($relacaoCalcioMagnesio -  $calcarioEscolhido->relacao)) {
+                    $calcarioEscolhido = $value;
+                }
+            }
+        }
+        
+        dd($calcarioEscolhido);
+        
+        dd($relacaoCalcioMagnesio);
 
         // dd($resultadoSaturacaoBases);
 

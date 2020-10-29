@@ -51,10 +51,10 @@ class CreateDatabase extends Migration
 
         Schema::create('recomendacao', function (Blueprint $table) {
             $table->id();
-            $table->decimal('quantidade_calcario_ha_saturacao', 10, 2); // quantidade_calcario por hectare no metodo saturaçao
-            $table->decimal('quantidade_calcario_teor_aluminio', 10, 2); // quantidade_calcario por hectare no metodo saturaçao
-            $table->decimal('quantidade_calcario_ha_ca_mg', 10, 2); // quantidade_calcario por hectare no metodo ca_mg
-            $table->string('insuficienciaCa_Mg', 50); // se está mais insuficiente calcio ou magnesio
+            $table->decimal('quantidade_calcario_ha_saturacao', 10, 2)->nullable(); // quantidade_calcario por hectare no metodo saturaçao
+            $table->decimal('quantidade_calcario_teor_aluminio', 10, 2)->nullable(); // quantidade_calcario por hectare no metodo saturaçao
+            $table->decimal('quantidade_calcario_ha_ca_mg', 10, 2)->nullable(); // quantidade_calcario por hectare no metodo ca_mg
+            $table->string('insuficienciaCa_Mg', 50)->nullable(); // se está mais insuficiente calcio ou magnesio
             $table->unsignedBigInteger('analise_solo_id');
             $table->foreign('analise_solo_id')->references('id')->on('analise_solo');
             $table->softDeletes();
@@ -80,11 +80,32 @@ class CreateDatabase extends Migration
                 'tipo' => 'dolomitico',
                 'pn' => 77,
                 'prnt' => 76,
-                'ca' => 30,
+                'ca' => 23,
+                'mg' => 17
+            ]
+        );
+        DB::table('calcario')->insert(
+            [ 
+                'id'=> 2,
+                'nome' => 'Calcario minasol',
+                'tipo' => 'calcitico',
+                'pn' => 77,
+                'prnt' => 92,
+                'ca' => 50,
+                'mg' => 3
+            ]
+        );
+        DB::table('calcario')->insert(
+            [ 
+                'id'=> 3,
+                'nome' => 'Calcario Solo fértil',
+                'tipo' => 'magnesiano',
+                'pn' => 77,
+                'prnt' => 85,
+                'ca' => 40,
                 'mg' => 10
             ]
         );
-        
 
     }
 
