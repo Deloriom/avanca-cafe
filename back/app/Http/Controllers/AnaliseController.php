@@ -42,24 +42,59 @@ class AnaliseController extends Controller
         $this->criarPropietario($data);
         $this->salvarTodosDados($data);
         $this->calcularCalcarioPorHectare();
+        
+        $analise = $this->analise_solo;
+        $recomendacao = $this->recomendacao;
+        $talhao = $this->talhao;
 
         switch ($this->analise_solo['tipo_calculo']) {
         case 1:
+            $dados = [];
+            $dados['area'] = $talhao['area_ha'];
+            $dados['toneladas_ha'] = $recomendacao['quantidade_calcario_ha_saturacao'];
+            $dados['total_toneladas'] = round(($recomendacao['quantidade_calcario_ha_saturacao']) * $talhao['area_ha'],2);
+            $dados['total_kilos'] = round(($recomendacao['quantidade_calcario_ha_saturacao'] * 1000) * $talhao['area_ha'],2);
+            $calcario = DB::table('calcario')->select('*')->where('id', '=', $recomendacao['calcario_id'])->first();
+            $dados['nome_calcario'] = $calcario->nome;
+            $dados['tipo_calcario'] = $calcario->tipo;
+            $dados['Calculo utilizado'] = $analise->tipo_calculo;
+            $dados['Calculo utilizado'] = $analise->tipo_calculo;
+
             return response()->json([
                 'success' => true,
-                'data' => $request->all()
+                'data' => $dados
             ]);
             break;
-        case 1:
+        case 2:
+            $dados = [];
+            $dados['area'] = $talhao['area_ha'];
+            $dados['toneladas_ha'] = $recomendacao['quantidade_calcario_teor_aluminio'];
+            $dados['total_toneladas'] = round(($recomendacao['quantidade_calcario_teor_aluminio']) * $talhao['area_ha'],2);
+            $dados['total_kilos'] = round(($recomendacao['quantidade_calcario_teor_aluminio'] * 1000) * $talhao['area_ha'],2);
+            $calcario = DB::table('calcario')->select('*')->where('id', '=', $recomendacao['calcario_id'])->first();
+            $dados['nome_calcario'] = $calcario->nome;
+            $dados['tipo_calcario'] = $calcario->tipo;
+            $dados['Calculo utilizado'] = $analise->tipo_calculo;
+
             return response()->json([
                 'success' => true,
-                'data' => $request->all()
+                'data' => $dados
             ]);
             break;
-        case 1:
+        case 3:
+            $dados = [];
+            $dados['area'] = $talhao['area_ha'];
+            $dados['toneladas_ha'] = $recomendacao['quantidade_calcario_ha_ca_mg'];
+            $dados['total_toneladas'] = round(($recomendacao['quantidade_calcario_ha_ca_mg']) * $talhao['area_ha'],2);
+            $dados['total_kilos'] = round(($recomendacao['quantidade_calcario_ha_ca_mg'] * 1000) * $talhao['area_ha'],2);
+            $calcario = DB::table('calcario')->select('*')->where('id', '=', $recomendacao['calcario_id'])->first();
+            $dados['nome_calcario'] = $calcario->nome;
+            $dados['tipo_calcario'] = $calcario->tipo;
+            $dados['Calculo utilizado'] = $analise->tipo_calculo;
+
             return response()->json([
                 'success' => true,
-                'data' => $request->all()
+                'data' => $dados
             ]);
             break;
         }
@@ -167,20 +202,20 @@ class AnaliseController extends Controller
             ['proprietario_id' => $this->propietario->id],
             [
                 'area_ha' => isset($data['area_ha'])?$data['area_ha']:null,
-                'saturacao_ideal' => isset($data['saturacao_ideal'])?$data['saturacao_ideal']:null
+                'saturacao_ideal' => isset($data['saturacao_ideal'])?$data['saturacao_ideal']: 0
             ]
         );
         $analise_solo = Analise_solo::updateOrCreate(
             ['talhao_id' => $talhao->id],
             [
                 'tipo_calculo' => $data['tipo_calculo'],
-                'saturacao_solo' => isset($data['saturacao_solo']) ? $data['saturacao_solo'] : null,
-                'ctc' => isset($data['ctc']) ? $data['ctc'] : null,
-                'magnesio' => isset($data['magnesio']) ? $data['magnesio'] : null,
-                'calcio' => isset($data['calcio']) ? $data['calcio'] : null,
-                'aluminio' => isset($data['aluminio']) ? $data['aluminio'] : null,
-                'teor_argila' => isset($data['teor_argila']) ? $data['teor_argila'] : null,
-                'teor_maximo_saturacao_aluminio' => isset($data['teor_maximo_saturacao_aluminio']) ? $data['teor_maximo_saturacao_aluminio'] : null
+                'saturacao_solo' => isset($data['saturacao_solo']) ? $data['saturacao_solo'] : 0,
+                'ctc' => isset($data['ctc']) ? $data['ctc'] : 0,
+                'magnesio' => isset($data['magnesio']) ? $data['magnesio'] : 0,
+                'calcio' => isset($data['calcio']) ? $data['calcio'] : 0,
+                'aluminio' => isset($data['aluminio']) ? $data['aluminio'] : 0,
+                'teor_argila' => isset($data['teor_argila']) ? $data['teor_argila'] : 0,
+                'teor_maximo_saturacao_aluminio' => isset($data['teor_maximo_saturacao_aluminio']) ? $data['teor_maximo_saturacao_aluminio'] : 0
             ]
         );
         $this->talhao = $talhao;
