@@ -18,7 +18,6 @@ class CreateDatabase extends Migration
         Schema::create('proprietario', function (Blueprint $table) {
             $table->id();
             $table->string('nome', 100);
-            $table->string('codigo', 32);
             $table->softDeletes();
             $table->timestamps();
         });
@@ -36,12 +35,15 @@ class CreateDatabase extends Migration
 
         Schema::create('analise_solo', function (Blueprint $table) {
             $table->id();
+            $table->integer('tipo_calculo');
             $table->decimal('saturacao_solo', 10,2);
             $table->decimal('ctc', 10,2);
 
             $table->decimal('magnesio', 10,2);
             $table->decimal('calcio', 10,2);
             $table->decimal('aluminio', 10,2);
+            $table->decimal('teor_argila', 10,2);
+            $table->decimal('teor_maximo_saturacao_aluminio', 10,2);
 
             $table->unsignedBigInteger('talhao_id');
             $table->foreign('talhao_id')->references('id')->on('talhao');

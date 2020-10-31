@@ -16,10 +16,13 @@ class Analise_solo extends Model
         protected $fillable = [
             'id',
             'saturacao_solo',
+            'tipo_calculo',
             'ctc',
             'magnesio',
             'calcio',
             'aluminio',
+            'teor_argila',
+            'teor_maximo_saturacao_aluminio',
             'talhao_id'
         ];
             
