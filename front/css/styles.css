@@ -1,3 +1,6 @@
+html {
+    scroll-behavior:smooth
+}
 
 input,.input-field  {
     margin : 5px;
@@ -11,3 +14,6 @@ form {
     display: none;
 }
 
+#div-result {
+    height: 100vh;
+}
