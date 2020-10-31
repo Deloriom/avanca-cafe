@@ -56,7 +56,7 @@ class AnaliseController extends Controller
 
         $this->criarPropietario($data);
         $this->salvarTodosDados($data);
-        $this->calcularSaturaçãoPorBase();
+        $this->calcularCalcarioPorHectare();
 
             return response()->json([
                 'success' => true,
@@ -72,12 +72,19 @@ class AnaliseController extends Controller
         }
     }
 
-    private function calcularSaturaçãoPorBase() {
+    private function calcularCalcarioPorHectare() {
         $analise = $this->analise_solo;
         $talhao = $this->talhao;
     
         // metodo por saturação de bases 1
         $resultadoSaturacaoBases = round(($talhao['saturacao_ideal'] - $analise['saturacao_solo']) * $analise['ctc']/76 ,2);
+
+        if ($resultadoSaturacaoBases < 0) {
+            $resultadoSaturacaoBases = $resultadoSaturacaoBases * -1;
+        }
+        
+        // metodo 2 aluminio
+
 
         // metodo 3 ca/mg
         
