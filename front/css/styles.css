@@ -1,0 +1,27 @@
+h1 {
+    font-size: 3rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.master {
+    margin: 0 5%;
+}
+
+.container {
+    height: 100vh;
+    background-color: aliceblue;
+}
+.w-6 {
+    width: 50%;
+}
+
+.w-12 {
+    width: 100%;
+}
+
+.resp-false{
+    display: none;
+}

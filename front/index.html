@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avança Café</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+    <div class="master">
+        <div class="container">
+            <div class="w-6">
+                a
+            </div>
+            <div class="w-6">
+                <form>
+                    <div class="input-group">
+                        <p>Nome do Proprietario</p>
+                        <input type="text" id="nome-proprietario">
+                    </div>
+
+                    <div class="input-group">
+                        <p>Tipo De Cálculo</p>
+                        <select name="tipoCalculo" id="tipoCalculo">
+                            <option selected value="1">Método Saturação Por Base</option>
+                            <option value="2">Método 2</option>
+                            <option value="3">Método 3</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <p>Talhão</p>
+                        <input type="text" id="talhao">
+                    </div>
+
+                    <div class="input-group">
+                        <p>Saturação Ideal</p>
+                        <input type="text" id="saturacao-ideal">
+                    </div>
+
+                    <div class="input-group">
+                        <p>Saturação do Solo</p>
+                        <input type="text" id="saturacao-solo">
+                    </div>
+
+                    <div class="input-group">
+                        <p>Capacidade de Troca de Cations</p>
+                        <input type="text" id="ctc">
+                    </div>
+
+                    <div class="input-group">Calcio</p>
+                        <input type="text" id="calcio">
+                    </div>
+
+                    <div class="input-group">
+                        <p>Aluminio</p>
+                        <input type="text" id="aluminio">
+                    </div>
+
+
+                    <button id="btn-confirma">Calcular</button>
+
+                </form>
+            </div>
+
+        </div>
+        <div class="container resp-false">
+
+        </div>
+    </div>
+    <script src="./js/scripts.js"></script>
+</body>
+
+</html>
