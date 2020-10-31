@@ -3,75 +3,146 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avança Café</title>
-    <link rel="stylesheet" href="./css/reset.css">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="./css/styles.css">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
 <body>
-    <div class="master">
-        <div class="container">
-            <div class="w-6">
-                a
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h3 class="center">Avança Café</h3>
             </div>
-            <div class="w-6">
-                <form>
-                    <div class="input-group">
-                        <p>Nome do Proprietario</p>
-                        <input type="text" id="nome-proprietario">
-                    </div>
+            <div class="col s12">
+                <div class="col s6" id="div-sat-base">
+                    <h4>Saturação Por Base</h4>
+                    <br>
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+                        but also the leap into electronic typesetting, remaining essentially unchanged. It was
+                        popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+                        and more recently with desktop publishing software like Aldus PageMaker including versions of
+                        Lorem Ipsum
+                    </p>
+                </div>
 
-                    <div class="input-group">
-                        <p>Tipo De Cálculo</p>
-                        <select name="tipoCalculo" id="tipoCalculo">
-                            <option selected value="1">Método Saturação Por Base</option>
-                            <option value="2">Método 2</option>
-                            <option value="3">Método 3</option>
-                        </select>
-                    </div>
+                <div class="col s6 none" id="div-teor-al">
+                    <h4>Teor de Alumínio</h4>
+                    <br>
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+                        but also the leap into electronic typesetting, remaining essentially unchanged. It was
+                        popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+                        and more recently with desktop publishing software like Aldus PageMaker including versions of
+                        Lorem Ipsum
+                    </p>
+                </div>
 
-                    <div class="input-group">
-                        <p>Talhão</p>
-                        <input type="text" id="talhao">
-                    </div>
-
-                    <div class="input-group">
-                        <p>Saturação Ideal</p>
-                        <input type="text" id="saturacao-ideal">
-                    </div>
-
-                    <div class="input-group">
-                        <p>Saturação do Solo</p>
-                        <input type="text" id="saturacao-solo">
-                    </div>
-
-                    <div class="input-group">
-                        <p>Capacidade de Troca de Cations</p>
-                        <input type="text" id="ctc">
-                    </div>
-
-                    <div class="input-group">Calcio</p>
-                        <input type="text" id="calcio">
-                    </div>
-
-                    <div class="input-group">
-                        <p>Aluminio</p>
-                        <input type="text" id="aluminio">
-                    </div>
+                <div class="col s6 none" id="div-cal-mag">
+                    <h4>Supri Cácil/Magnésio</h4>
+                    <br>
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                        of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+                        but also the leap into electronic typesetting, remaining essentially unchanged. It was
+                        popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+                        and more recently with desktop publishing software like Aldus PageMaker including versions of
+                        Lorem Ipsum
+                    </p>
+                </div>
 
 
-                    <button id="btn-confirma">Calcular</button>
 
-                </form>
+
+                <div class="col s6">
+                    <form class="col s12">
+
+                        <div class="progress none" id="loading">
+                            <div class="indeterminate"></div>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <input id="nome-proprietario" type="text" class="validate">
+                            <label for="nome-proprietario">Nome do Proprietário</label>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <select id="tipoCalculo">
+                                <option value="1">Saturação Por Base</option>
+                                <option value="2">Teor de Alumínio</option>
+                                <option value="3">Suprir Cálcio/Magnésio</option>
+                            </select>
+                            <label>Tipo do Cálculo</label>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <input id="talhao" type="text" class="validate">
+                            <label for="talhao">Tamanho do Talhão</label>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <input id="saturacao-ideal" type="text" class="validate">
+                            <label for="saturacao-ideal">Saturação Ideal</label>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <input id="saturacao-solo" type="text" class="validate">
+                            <label for="saturacao-solo">Saturação do Solo</label>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <input id="ctc" type="text" class="validate">
+                            <label for="ctc">CTC</label>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <input id="calcio" type="text" class="validate">
+                            <label for="calcio">Cálcio</label>
+                        </div>
+
+                        <div class="input-field col s12">
+                            <input id="aluminio" type="text" class="validate">
+                            <label for="aluminio">Alumínio</label>
+                        </div>
+
+                        <div class="input-field col s12 none">
+                            <input id="teor-argila" type="text" class="validate">
+                            <label for="teor-argila">Teor de Argila</label>
+                        </div>
+
+                        <div class="input-field col s12 none">
+                            <input id="teor-aluminio" type="text" class="validate">
+                            <label for="teor-aluminio">Teor de Alumínio</label>
+                        </div>
+
+                        <button class="btn waves-effect waves-light" type="submit" name="btn-confirma"
+                            id="btn-confirma">Calcular</button>
+
+                    </form>
+                </div>
+
             </div>
+        </div>
+
+        <div class="row none">
 
         </div>
-        <div class="container resp-false">
 
-        </div>
-    </div>
-    <script src="./js/scripts.js"></script>
+        <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="./js/scripts.js"></script>
 </body>
 
 </html>

@@ -7,13 +7,22 @@ let ctc = '';
 let calcio = '';
 let aluminio = '';
 let magnesio = '';
+let teorArgila = '';
+let teorMaximo = '';
 let btnConfirma = '';
-
+let liCalculo = '';
+let loading = '';
+let divSatBase = '';
+let divTeorAl = '';
+let divCalMag = '';
 
 window.addEventListener('load', () => {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, {});
+
     loadFields();
-    tipoCalculo.addEventListener('change', () => { controleFields(event); })
     btnConfirma.addEventListener('click', () => { realizaCalculo(event); })
+    tipoCalculo.addEventListener('change', () => { controleFields(event); })
 })
 
 function loadFields() {
@@ -25,12 +34,44 @@ function loadFields() {
     ctc = document.querySelector('#ctc');
     calcio = document.querySelector('#calcio');
     aluminio = document.querySelector('#aluminio');
+    teorArgila = document.querySelector('#teor-argila');
+    teorMaximo = document.querySelector('#teor-aluminio');
     btnConfirma = document.querySelector('#btn-confirma');
+    loading = document.querySelector('#loading');
+    divSatBase = document.querySelector('#div-sat-base');
+    divTeorAl = document.querySelector('#div-teor-al');
+    divCalMag = document.querySelector('#div-cal-mag');
 }
 
 function controleFields(event) {
-    console.log(event)
+    const opt = event.target.value;
+
+    console.log(opt)
+    if (opt == 1) {
+        teorArgila.parentNode.classList.add('none');
+        teorMaximo.parentNode.classList.add('none');
+        divSatBase.classList.remove('none');
+        divTeorAl.classList.add('none');
+        divCalMag.classList.add('none');
+    }
+    if (opt == 2) {
+        teorArgila.parentNode.classList.remove('none');
+        teorMaximo.parentNode.classList.remove('none');
+        divSatBase.classList.add('none');
+        divTeorAl.classList.remove('none');
+        divCalMag.classList.add('none');
+    }
+    if (opt == 3) {
+        teorArgila.parentNode.classList.add('none');
+        teorMaximo.parentNode.classList.add('none');
+        divSatBase.classList.add('none');
+        divTeorAl.classList.add('none');
+        divCalMag.classList.remove('none');
+    }
 }
+
+
+
 
 function realizaCalculo(event) {
     event.preventDefault();
@@ -49,28 +90,29 @@ function realizaCalculo(event) {
         "teor_maximo_saturacao_aluminio": 5,
     }
 
-    // Exemplo de requisição POST
-    const api = new XMLHttpRequest();
-
-    // Seta tipo de requisição: Post e a URL da API
-    api.open("POST", "http://localhost:8000/api/analise", true);
-
-    api.setRequestHeader("Content-type", "application/json");
-
-    // Seta paramêtros da requisição e envia a requisição
-    api.send(JSON.stringify(dados));
-
-    // Cria um evento para receber o retorno.
-    api.onreadystatechange = function () {
-
-        // Caso o state seja 4 e o http.status for 200, é porque a requisiçõe deu certo.
-        if (api.readyState == 4 && api.status == 200) {
-            var data = api.responseText;
-
-            // Retorno do api
-            console.log(data);
-        }
-    }
-
+    loading.classList.remove('none')
+    btnConfirma.disabled = true;
+    setTimeout(() => {
+        reqApi(dados)
+        console.log(dados)
+    }, 1000);
+    reqApi(dados)
 }
 
+
+function reqApi(dados) {
+    const api = new XMLHttpRequest();
+    api.open("POST", "http://localhost:8000/api/analise", true);
+    api.setRequestHeader("Content-type", "application/json");
+    api.send(JSON.stringify(dados));
+    api.onreadystatechange = function () {
+        if (api.readyState == 4 && api.status == 200) {
+            var data = api.responseText;
+            loading.classList.add('none')
+            btnConfirma.disabled = false;
+        } else {
+            loading.classList.add('none')
+            btnConfirma.disabled = false;
+        }
+    }
+}
