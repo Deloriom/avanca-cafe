@@ -39,6 +39,13 @@ class AnaliseController extends Controller
         try {
         $data = $request->all();
 
+        foreach ($data as $key => $value) {
+            if ($value === '') {
+                $data[$key] = null;
+            }
+        }
+        
+
         $this->criarPropietario($data);
         $this->salvarTodosDados($data);
         $this->calcularCalcarioPorHectare();
@@ -209,13 +216,13 @@ class AnaliseController extends Controller
             ['talhao_id' => $talhao->id],
             [
                 'tipo_calculo' => $data['tipo_calculo'],
-                'saturacao_solo' => $data['saturacao_solo'] !== '' ? $data['saturacao_solo'] : 0,
-                'ctc' => $data['ctc'] !== '' ? $data['ctc'] : 0,
-                'magnesio' => $data['magnesio'] !== '' ? $data['magnesio'] : 0,
-                'calcio' => $data['calcio'] !== '' ? $data['calcio'] : 0,
-                'aluminio' => $data['aluminio'] !== '' ? $data['aluminio'] : 0,
-                'teor_argila' => $data['teor_argila'] !== '' ? $data['teor_argila'] : 0,
-                'teor_maximo_saturacao_aluminio' => $data['teor_maximo_saturacao_aluminio'] !== '' ? $data['teor_maximo_saturacao_aluminio'] : 0
+                'saturacao_solo' => isset($data['saturacao_solo']) ? $data['saturacao_solo'] : 0,
+                'ctc' => isset($data['ctc']) ? $data['ctc'] : 0,
+                'magnesio' => isset($data['magnesio']) ? $data['magnesio'] : 0,
+                'calcio' => isset($data['calcio']) ? $data['calcio'] : 0,
+                'aluminio' => isset($data['aluminio']) ? $data['aluminio'] : 0,
+                'teor_argila' => isset($data['teor_argila']) ? $data['teor_argila'] : 0,
+                'teor_maximo_saturacao_aluminio' => isset($data['teor_maximo_saturacao_aluminio']) ? $data['teor_maximo_saturacao_aluminio'] : 0
             ]
         );
         $this->talhao = $talhao;
