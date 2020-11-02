@@ -39,6 +39,13 @@ class AnaliseController extends Controller
         try {
         $data = $request->all();
 
+        foreach ($data as $key => $value) {
+            if ($value === '') {
+                $data[$key] = null;
+            }
+        }
+        
+
         $this->criarPropietario($data);
         $this->salvarTodosDados($data);
         $this->calcularCalcarioPorHectare();
