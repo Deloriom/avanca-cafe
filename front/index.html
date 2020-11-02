@@ -20,8 +20,8 @@
             <div class="col s12">
                 <h3 class="center">Avança Café</h3>
             </div>
-            <div class="col s12">
-                <div class="col s6" id="div-sat-base">
+            <div class="col m6 s12">
+                <div class="col s12" id="div-sat-base">
                     <h4>Saturação Por Base</h4>
                     <br>
                     <p>
@@ -35,7 +35,7 @@
                     </p>
                 </div>
 
-                <div class="col s6 none" id="div-teor-al">
+                <div class="col s12 none" id="div-teor-al">
                     <h4>Teor de Alumínio</h4>
                     <br>
                     <p>
@@ -49,7 +49,7 @@
                     </p>
                 </div>
 
-                <div class="col s6 none" id="div-cal-mag">
+                <div class="col s12 none" id="div-cal-mag">
                     <h4>Supri Cácil/Magnésio</h4>
                     <br>
                     <p>
@@ -63,91 +63,92 @@
                         is therefore always free from repetition, injected humour, or non-characteristic words etc.
                     </p>
                 </div>
-
-                <div class="col s6">
-                    <form class="col s12">
-
-                        <div class="progress none" id="loading">
-                            <div class="indeterminate"></div>
-                        </div>
-
-                        <div class="input-field col s12">
-                            <input id="nome-proprietario" type="text" class="validate">
-                            <label for="nome-proprietario">Nome do Proprietário</label>
-                        </div>
-
-                        <div class="input-field col s12">
-                            <select id="tipoCalculo">
-                                <option value="1">Saturação Por Base</option>
-                                <option value="2">Teor de Alumínio</option>
-                                <option value="3">Suprir Cálcio/Magnésio</option>
-                            </select>
-                            <label>Tipo do Cálculo</label>
-                        </div>
-
-                        <div class="input-field col">
-                            <input id="talhao" type="text" class="validate">
-                            <label for="talhao">Tamanho do Talhão</label>
-                        </div>
-
-                        <div class="input-field col">
-                            <input id="ctc" type="text" class="validate">
-                            <label for="ctc">CTC</label>
-                        </div>
-
-                        <div class="input-field col s12">
-                            <input id="saturacao-ideal" type="text" class="validate">
-                            <label for="saturacao-ideal">Saturação Ideal</label>
-                        </div>
-
-                        <div class="input-field col s12">
-                            <input id="saturacao-solo" type="text" class="validate">
-                            <label for="saturacao-solo">Saturação do Solo</label>
-                        </div>
-
-                        <div class="input-field col s12 none">
-                            <input id="magnesio" type="text" class="validate">
-                            <label for="magnesio">Magnésio</label>
-                        </div>
-
-                        <div class="input-field col s12 none">
-                            <input id="calcio" type="text" class="validate">
-                            <label for="calcio">Cálcio</label>
-                        </div>
-
-                        <div class="input-field col s12 none">
-                            <input id="aluminio" type="text" class="validate">
-                            <label for="aluminio">Alumínio</label>
-                        </div>
-
-                        <div class="input-field col none">
-                            <input id="teor-argila" type="text" class="validate">
-                            <label for="teor-argila">Teor de Argila</label>
-                        </div>
-
-                        <div class="input-field col none">
-                            <input id="teor-aluminio" type="text" class="validate">
-                            <label for="teor-aluminio">Teor de Alumínio</label>
-                        </div>
-
-                        <div class="col s12">
-                            <button class="btn waves-effect waves-light" type="submit" name="btn-confirma"
-                                id="btn-confirma">Calcular</button>
-                        </div>
-
-                    </form>
-                </div>
-
             </div>
+
+            <div class="col m6 s12">
+                <form>
+
+                    <div class="progress none" id="loading">
+                        <div class="indeterminate"></div>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <input id="nome-proprietario" type="text" class="validate">
+                        <label for="nome-proprietario">Nome do Proprietário</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <select id="tipoCalculo">
+                            <option value="1">Saturação Por Base</option>
+                            <option value="2">Teor de Alumínio</option>
+                            <option value="3">Suprir Cálcio/Magnésio</option>
+                        </select>
+                        <label>Tipo do Cálculo</label>
+                    </div>
+
+                    <div class="input-field col">
+                        <input id="talhao" type="text" class="validate">
+                        <label for="talhao">Tamanho do Talhão</label>
+                    </div>
+
+                    <div class="input-field col">
+                        <input id="ctc" type="text" class="validate">
+                        <label for="ctc">CTC</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <input id="saturacao-ideal" type="text" class="validate">
+                        <label for="saturacao-ideal">Saturação Ideal</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <input id="saturacao-solo" type="text" class="validate">
+                        <label for="saturacao-solo">Saturação do Solo</label>
+                    </div>
+
+                    <div class="input-field col s12 none">
+                        <input id="magnesio" type="text" class="validate">
+                        <label for="magnesio">Magnésio</label>
+                    </div>
+
+                    <div class="input-field col s12 none">
+                        <input id="calcio" type="text" class="validate">
+                        <label for="calcio">Cálcio</label>
+                    </div>
+
+                    <div class="input-field col s12 none">
+                        <input id="aluminio" type="text" class="validate">
+                        <label for="aluminio">Alumínio</label>
+                    </div>
+
+                    <div class="input-field col none">
+                        <input id="teor-argila" type="text" class="validate">
+                        <label for="teor-argila">Teor de Argila</label>
+                    </div>
+
+                    <div class="input-field col none">
+                        <input id="teor-aluminio" type="text" class="validate">
+                        <label for="teor-aluminio">Teor de Alumínio</label>
+                    </div>
+
+                    <div class="col s12">
+                        <button class="btn waves-effect waves-light" type="submit" name="btn-confirma"
+                            id="btn-confirma">Calcular</button>
+                    </div>
+
+                </form>
+            </div>
+
         </div>
+    </div>
 
-        <div id="div-result" class="row none">
+    <div id="div-result" class="row none">
 
-        </div>
+    </div>
 
-        <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script src="./js/scripts.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./js/scripts.js"></script>
 </body>
 
 </html>
